@@ -68,23 +68,24 @@ button {
     border-radius: 10px;
 }
 
-/* LETTER */
 #letter {
     display: none;
-    padding: 50px 20px;
-    width: 100%;
+    padding: 60px 20px;
     min-height: 100vh;
-    line-height: 1.8;
-    word-wrap: break-word;
-    text-align: center;
+    width: 100%;
     box-sizing: border-box;
+
+    /* centre the text block */
+    display: flex;
+    justify-content: center;
 }
 
-/* Paragraph styling inside the letter */
 #letter p {
+    max-width: 800px;
+    width: 100%;
+    line-height: 1.8;
+    text-align: center;
     white-space: normal;
-    margin: 0 auto;
-    max-width: 900px;
 }
 /* WORD FALL */
 .word {
