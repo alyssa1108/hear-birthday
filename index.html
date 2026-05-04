@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Baby ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* LOGIN */
+#loginPage {
+    height: 100vh;
+    background: url('background.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: rgba(0, 40, 20, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    color: gold;
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    padding: 10px 20px;
+    background: gold;
+    color: darkgreen;
+    border: none;
+    cursor: pointer;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    height: 100vh;
+    background: #013220;
+    color: gold;
+    text-align: center;
+    position: relative;
+}
+
+/* PAGES */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+}
+
+/* GALLERY */
+#gallery img {
+    width: 260px;
+    margin-top: 60px;
+    border-radius: 10px;
+}
+
+/* LETTER */
+#letter {
+    display: none;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.8;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+#letter p {
+    white-space: normal;
+}
+/* WORD FALL */
+.word {
+    opacity: 0;
+    display: inline-block;
+    transform: translateY(-40px);
+    animation: drop 0.6s forwards;
+}
+
+@keyframes drop {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HEARTS */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+    <div class="login-box">
+        <h2>Enter My Love ❤️</h2>
+        <input id="username" placeholder="Username"><br>
+        <input id="password" type="password" placeholder="Password"><br>
+        <button onclick="login()">Enter</button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+    <div id="gallery" class="page">
+        <h1>Our Memories ❤️</h1>
+        <img src="image01.jpeg"><br><br>
+        <button onclick="openLetter()">Next ➡️</button>
+    </div>
+
+    <div id="letter" class="page">
+        <h1>My Letter To You 💌</h1>
+        <p id="text"></p>
+    </div>
+
+</div>
+
+<audio id="music" src="mysong.mp3"></audio>
+
+<script>
+function login() {
+    let u = document.getElementById("username").value;
+    let p = document.getElementById("password").value;
+
+    if (u === "JoashManicum" && p === "07/10/02") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("main").style.display = "block";
+
+        // PLAY MUSIC (guaranteed after click)
+        let music = document.getElementById("music");
+        music.play();
+
+        startHearts();
+    } else {
+        alert("Wrong details");
+    }
+}
+
+function openLetter() {
+    document.getElementById("gallery").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+
+    dropText();
+}
+
+function dropText() {
+    const message = `My baby… ❤️
+
+From the very beginning, there was always something about us that just felt right. Like we didn’t have to try too hard… it just flowed. And that’s why “Best Part” became our song — because it feels like us.
+
+It’s soft, it’s calm, it’s real… and it reminds me of the way I feel when I’m with you. Out of everything in my life, all the chaos, all the noise — you are my peace. You are my comfort. You are my best part.
+
+Every time that song plays, I don’t just hear music… I feel us. I think about every hug, every kiss, every moment where nothing else mattered except being close to you. You’ve given me a kind of love I didn’t even know I needed, and I’ll never take that for granted.
+
+This whole little gift is just a small way of showing you how much you mean to me, but the truth is… no words could ever fully explain it.
+You truly are the biggest blessing in my life, youll always be my baby, and im so grateful to have you and to be with you and im even more excited knowing that im gonna get to spend the rest of my life with you my love. 
+
+i genuinely cant picture my life without you, and i might not say it enough but my love, you are absolutely perfect, a perfect person, a perfect son, a perfect brother, but most importantly a perfect boyfriend, and im so grateful to have you, you really dont know how much you mean to me and words would never be able to explain it either but i will spend the rest of my life showing you that you truly are the most amazing person, for me and everyone else. 
+
+You are a blessing to everyone who knows you my love, always remember that, and i'll always see you as "the person that God knew i needed" because i did, and i'll always need you baby! And trust me i mean ALWAYS. You mean the world to me!
+
+About this gift now. This is the "hear" part of it. Its something simple that ive been working on, (your a coder) so i thought it would be a cute idea for me to code something for you, which plays our song, but yes, you truly are the best part of my life, and i will never ever give you a reason to think otherwise. I hope that you love your gift, and that its something that you can cherish as well.
+
+Thank you for being my "best part" of life
+
+I love you, forever. ❤️`;
+
+    let container = document.getElementById("text");
+    container.innerHTML = "";
+
+    let words = message.split(" ");
+
+    words.forEach((w, i) => {
+        let span = document.createElement("span");
+        span.className = "word";
+        span.style.animationDelay = (i * 0.06) + "s";
+        span.innerHTML = w + "&nbsp;";
+        container.appendChild(span);
+    });
+}
+
+function startHearts() {
+    setInterval(() => {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(h);
+
+        setTimeout(() => h.remove(), 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
